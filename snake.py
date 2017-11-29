@@ -1,7 +1,7 @@
 '''
 Snake game.
 Authors:
-<insert the names of your teammates here>
+<Mikaela Ballard & Dejohna Sydnor>
 '''
 
 import pygame
