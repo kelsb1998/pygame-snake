@@ -44,16 +44,15 @@ def get_direction(previous_direction, event_key):
     event_key - the event that the user pressed; one of https://www.pygame.org/docs/ref/key.html
     If event_key does not correspond with any of the arrows keys, return previous_direction.
     """
-    if event_key == pygame.K_LEFT:
-        return DIRECTION_LEFT
-    elif event_key == pygame.K_UP:
-        return DIRECTION_UP
-    elif event_key == pygame.K_DOWN:
-        return DIRECTION_DOWN
-    elif event_key == pygame.K_RIGHT:
-        return DIRECTION_RIGHT
-    return previous_direction
-
+    if event_key == pygame.K_LEFT:
+        return DIRECTION_LEFT
+    elif event_key == pygame.K_UP:
+        return DIRECTION_UP
+    elif event_key == pygame.K_DOWN:
+        return DIRECTION_DOWN
+    elif event_key == pygame.K_RIGHT:
+        return DIRECTION_RIGHT
+    return previous_direction
 def create_food_position():
     """Returns a random 2-tuple in the grid where the food should be located.
     The first element is the x position. Must be an int between 0 and GRID_WIDTH - 1, inclusively.
@@ -93,10 +92,10 @@ def snake_intersected_body(snake):
     The snake ran into itself if the position of the head is the same as the position
     of any of its body segments.
     """
-    for i in range(len(snake)):
-        if snake[0] == snake[1]:
+    for index in range(1, len(snake)):
+        if snake[0] == snake[index]:
             return True
-        return False
+    return False
 
 def get_score(snake):
     """Returns the current score of the game.
@@ -111,7 +110,7 @@ def get_game_over_text(score):
     This text should contain 'Game Over' as well as the score.
     score - integer representing the current score of the game.
     """
-    return 'Game Over.'
+    return 'Game Over. Score: ' + str(int(score))
 
 def get_snake_speed(snake):
     """Return the number of cells the snake should travel in one second.
@@ -119,6 +118,9 @@ def get_snake_speed(snake):
     The speed at the beginning of the game should be 5. Once the snake has eaten 10 pieces of food,
     the speed of the game should increase (by how much is up to you).
     """
+    for index in range (len(snake)):
+        if len(snake) >= 15:
+            return 10
     return 5
 
 def move_snake(snake, direction, food):
